@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tráfego Pago para Iniciantes | Ailton Lopes</title>
+  <meta name="description" content="Aprenda tráfego pago do zero com estratégia, prática e direção. Curso ideal para iniciantes que querem criar campanhas com lógica, atrair clientes e vender mais." />
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-soft: #0d1b2f;
+      --card: rgba(255,255,255,0.06);
+      --card-strong: rgba(255,255,255,0.1);
+      --line: rgba(255,255,255,0.12);
+      --text: #f5f7fb;
+      --muted: #b8c2d6;
+      --primary: #1f8fff;
+      --primary-2: #6d5cff;
+      --accent: #ff8a1c;
+      --success: #22c55e;
+      --shadow: 0 18px 50px rgba(0,0,0,0.28);
+      --radius: 22px;
+      --radius-sm: 14px;
+      --max: 1180px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(31,143,255,0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(109,92,255,0.16), transparent 24%),
+        linear-gradient(180deg, #06101d 0%, #081321 40%, #091524 100%);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: rgba(5, 12, 24, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .topbar-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .brand small {
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+
+    .brand strong {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 54px;
+      padding: 0 24px;
+      border-radius: 16px;
+      border: 0;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.28s ease;
+      text-align: center;
+    }
+
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(90deg, var(--accent), #ff6a00);
+      box-shadow: 0 18px 40px rgba(255, 122, 24, 0.28);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 46px rgba(255, 122, 24, 0.35);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .hero {
+      padding: 76px 0 42px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border: 1px solid rgba(255,255,255,0.09);
+      background: rgba(255,255,255,0.05);
+      border-radius: 999px;
+      color: #d8e2f2;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .tag::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 0 6px rgba(34,197,94,0.12);
+    }
+
+    h1 {
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      margin-bottom: 18px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #ffffff 0%, #83b9ff 55%, #ffb067 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p.lead {
+      font-size: 19px;
+      color: var(--muted);
+      max-width: 760px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 26px;
+    }
+
+    .mini-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .stat {
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hero-card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(18,28,47,0.92), rgba(7,13,24,0.94));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 28px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -30% auto auto -10%;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(31,143,255,0.30), transparent 65%);
+      pointer-events: none;
+    }
+
+    .price-badge {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,138,28,0.14);
+      border: 1px solid rgba(255,138,28,0.28);
+      color: #ffd6b1;
+      font-weight: 700;
+    }
+
+    .hero-card h2 {
+      font-size: 28px;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .hero-card p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .checklist {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: #eaf0fb;
+    }
+
+    .checklist li::before {
+      content: "✓";
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 24px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(34,197,94,0.14);
+      color: #56f08a;
+      font-size: 14px;
+      font-weight: 900;
+      margin-top: 1px;
+    }
+
+    section {
+      padding: 44px 0;
+    }
+
+    .section-head {
+      max-width: 850px;
+      margin-bottom: 26px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    h2.section-title {
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.08;
+      margin-bottom: 12px;
+      letter-spacing: -0.03em;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.035));
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card .icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, rgba(31,143,255,0.18), rgba(255,138,28,0.18));
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .card h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .card ul {
+      margin-top: 10px;
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .course-wrap {
+      display: grid;
+      gap: 16px;
+    }
+
+    .module {
+      background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .module-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .module-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(31,143,255,0.18), rgba(109,92,255,0.18));
+      border: 1px solid rgba(255,255,255,0.08);
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .module h3 {
+      font-size: 24px;
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .module p {
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .module ul {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .module ul li {
+      display: flex;
+      gap: 10px;
+      color: #e8edf7;
+      padding: 12px 14px;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.035);
+    }
+
+    .module ul li::before {
+      content: "•";
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .deliverables {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .deliver-box {
+      padding: 26px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(12, 26, 49, 0.94), rgba(7, 15, 28, 0.94));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+    }
+
+    .deliver-box h3 {
+      font-size: 24px;
+      margin-bottom: 14px;
+    }
+
+    .deliver-box ul {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .deliver-box li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: #eef3ff;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed rgba(255,255,255,0.08);
+    }
+
+    .deliver-box li:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .deliver-box li::before {
+      content: "→";
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .audience-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .audience-item {
+      padding: 16px 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      color: #edf2fc;
+      font-weight: 600;
+    }
+
+    .cta-block {
+      padding: 34px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(255,138,28,0.16), rgba(31,143,255,0.14));
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 16px;
+      text-align: center;
+    }
+
+    .cta-block h2 {
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.05;
+    }
+
+    .cta-block p {
+      color: #dce5f6;
+      font-size: 18px;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .price-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin: 8px 0 6px;
+    }
+
+    .old-price {
+      color: #c9d3e9;
+      text-decoration: line-through;
+      font-size: 22px;
+      opacity: 0.8;
+    }
+
+    .new-price {
+      font-size: clamp(38px, 6vw, 64px);
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .new-price small {
+      font-size: 18px;
+      font-weight: 700;
+      color: #ffd7ba;
+      letter-spacing: normal;
+    }
+
+    .secure-note {
+      color: #d7e3fa;
+      font-size: 14px;
+    }
+
+    .faq {
+      display: grid;
+      gap: 14px;
+    }
+
+    details {
+      background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 18px 20px;
+      box-shadow: var(--shadow);
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 800;
+      list-style: none;
+      position: relative;
+      padding-right: 24px;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: "+";
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 22px;
+      color: var(--accent);
+    }
+
+    details[open] summary::after {
+      content: "−";
+    }
+
+    details p {
+      color: var(--muted);
+      padding-top: 12px;
+    }
+
+    footer {
+      padding: 34px 0 60px;
+      color: #aebbd3;
+      text-align: center;
+    }
+
+    .floating-cta {
+      position: fixed;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      z-index: 40;
+      display: none;
+    }
+
+    .floating-cta a {
+      width: 100%;
+      min-height: 58px;
+      border-radius: 18px;
+      font-size: 16px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .deliverables,
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .mini-stats,
+      .audience-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .topbar-inner {
+        min-height: 72px;
+      }
+
+      .pill {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 46px;
+      }
+
+      .hero-card,
+      .module,
+      .card,
+      .deliver-box,
+      .cta-block {
+        padding: 22px;
+      }
+
+      .hero p.lead,
+      .section-head p,
+      .cta-block p {
+        font-size: 16px;
+      }
+
+      .floating-cta {
+        display: block;
+      }
+
+      body {
+        padding-bottom: 86px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <small>Ailton Lopes</small>
+        <strong>Tráfego Pago para Iniciantes</strong>
+      </div>
+      <div class="nav-cta">
+        <span class="pill">Curso prático para iniciantes</span>
+        <a class="btn btn-primary" href="https://pay.kiwify.com.br/Mla85cx" target="_blank" rel="noopener noreferrer">Garantir minha vaga</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="tag">Curso online com foco em Meta Ads, estratégia e conversão</span>
+          <h1>
+            Aprenda <span class="gradient-text">Tráfego Pago do Zero</span><br />
+            e crie campanhas com lógica, direção e resultado.
+          </h1>
+          <p class="lead">
+            Um treinamento pensado para iniciantes que querem parar de impulsionar no escuro e começar a anunciar com estratégia. Entenda oferta, público, criativo, campanha, WhatsApp, métricas e otimização de forma prática.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://pay.kiwify.com.br/Mla85cx" target="_blank" rel="noopener noreferrer">Quero acessar o curso</a>
+            <a class="btn btn-secondary" href="#entregaveis">Ver entregáveis</a>
+          </div>
+          <div class="mini-stats">
+            <div class="stat">
+              <strong>8 módulos</strong>
+              <span>Estrutura completa e progressiva para quem está começando</span>
+            </div>
+            <div class="stat">
+              <strong>24 aulas</strong>
+              <span>Do fundamento ao primeiro processo de otimização</span>
+            </div>
+            <div class="stat">
+              <strong>100% prático</strong>
+              <span>Aplicação real para negócios, serviços e geração de leads</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <div class="price-badge">Oferta especial de lançamento</div>
+          <h2>O caminho mais claro para você entender anúncios e começar a vender com mais inteligência.</h2>
+          <p>
+            Ideal para social medias, prestadores de serviço, donos de negócio, iniciantes no digital e pessoas que querem aprender Meta Ads sem depender de fórmulas confusas.
+          </p>
+          <ul class="checklist">
+            <li>Aprenda o que anunciar, para quem anunciar e com qual objetivo.</li>
+            <li>Monte campanhas simples e bem estruturadas no Meta Ads.</li>
+            <li>Entenda como usar criativo, copy, WhatsApp e métricas a seu favor.</li>
+            <li>Saia do básico operacional e comece com mentalidade estratégica.</li>
+          </ul>
+          <a class="btn btn-primary" href="https://pay.kiwify.com.br/Mla85cx" target="_blank" rel="noopener noreferrer">Acessar agora</a>
+        </aside>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Para quem é este curso</span>
+          <h2 class="section-title">Feito para quem quer começar certo, sem pular etapas importantes.</h2>
+          <p>
+            Você não precisa ser especialista em marketing para acompanhar. O curso foi estruturado para quem quer entender os fundamentos do tráfego pago e aplicar isso em negócios reais.
+          </p>
+        </div>
+
+        <div class="audience-list">
+          <div class="audience-item">Iniciantes no tráfego pago</div>
+          <div class="audience-item">Social medias que querem evoluir</div>
+          <div class="audience-item">Donos de negócio e empreendedores</div>
+          <div class="audience-item">Prestadores de serviço</div>
+          <div class="audience-item">Profissionais liberais</div>
+          <div class="audience-item">Quem já tentou anunciar e não teve resultado</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Transformação</span>
+          <h2 class="section-title">O que o aluno vai ser capaz de fazer ao final do treinamento</h2>
+          <p>
+            O objetivo não é apenas mostrar botões. É fazer o aluno entender o raciocínio por trás de uma campanha que realmente faz sentido.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="icon">🎯</div>
+            <h3>Definir a campanha certa</h3>
+            <p>Escolher objetivo, público e formato com mais clareza para não desperdiçar verba logo no começo.</p>
+          </div>
+          <div class="card">
+            <div class="icon">🧠</div>
+            <h3>Pensar com estratégia</h3>
+            <p>Entender oferta, criativo, copy e funil de forma prática, conectando anúncio com resultado real.</p>
+          </div>
+          <div class="card">
+            <div class="icon">📈</div>
+            <h3>Otimizar os primeiros resultados</h3>
+            <p>Ler métricas básicas, identificar gargalos e fazer ajustes simples sem bagunçar toda a campanha.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="modulos">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Conteúdo do curso</span>
+          <h2 class="section-title">Uma estrutura didática para sair do zero e construir sua primeira lógica de performance</h2>
+          <p>
+            O curso foi desenhado com base em uma visão prática de mercado: campanha não é só anúncio. É estratégia, oferta, mensagem, público, atendimento e conversão.
+          </p>
+        </div>
+
+        <div class="course-wrap">
+          <div class="module">
+            <div class="module-top">
+              <div class="module-number">01</div>
+              <h3>Fundamentos do Tráfego Pago</h3>
+            </div>
+            <p>Entenda a lógica do tráfego pago antes de abrir o gerenciador.</p>
+            <ul>
+              <li>O que é tráfego pago de verdade</li>
+              <li>Como funcionam entrega, leilão, segmentação e orçamento</li>
+              <li>Os principais erros de quem está começando</li>
+            </ul>
+          </div>
+
+          <div class="module">
+            <div class="module-top">
+              <div class="module-number">02</div>
+              <h3>Base Estratégica Antes de Anunciar</h3>
+            </div>
+            <p>Aprenda a pensar como estrategista antes de subir a campanha.</p>
+            <ul>
+              <li>Objetivos de campanha e quando usar cada um</li>
+              <li>Oferta forte x oferta fraca</li>
+              <li>Público frio, morno, quente e local</li>
+            </ul>
+          </div>
+
+          <div class="module">
+            <div class="module-top">
+              <div class="module-number">03</div>
+              <h3>Criativo e Copy para Anúncios</h3>
+            </div>
+            <p>Descubra o que chama atenção e faz a pessoa agir.</p>
+            <ul>
+              <li>Como criar anúncios que param o scroll</li>
+              <li>Estrutura de copy simples que vende</li>
+              <li>Imagem, vídeo, carrossel, Reels e anúncio para WhatsApp</li>
+            </ul>
+          </div>
+
+          <div class="module">
+            <div class="module-top">
+              <div class="module-number">04</div>
+              <h3>Estrutura de Campanhas no Meta Ads</h3>
+            </div>
+            <p>Veja onde mexer no gerenciador sem complicação.</p>
+            <ul>
+              <li>Campanha, conjunto e anúncio: o papel de cada nível</li>
+              <li>Como montar a primeira campanha passo a passo</li>
+              <li>Modelos de campanha mais indicados para iniciantes</li>
+            </ul>
+          </div>
+
+          <div class="module">
+            <div class="module-top">
+              <div class="module-number">05</div>
+              <h3>Tráfego Pago para Negócios Locais e Serviços</h3>
+            </div>
+            <p>Aplicação real para quem precisa vender na prática.</p>
+            <ul>
+              <li>Segmentação por região, cidade e bairro</li>
+              <li>Captação de leads para serviços e negócios locais</li>
+              <li>Como usar WhatsApp como canal de conversão</li>
+            </ul>
+          </div>
+
+          <div class="module">
+            <div class="module-top">
+              <div class="module-number">06</div>
+              <h3>Funil de Vendas Aplicado ao Tráfego</h3>
+            </div>
+            <p>Conecte anúncio, conteúdo, atendimento e venda.</p>
+            <ul>
+              <li>Descoberta, conexão, decisão e compra</li>
+              <li>Como integrar conteúdo e tráfego</li>
+              <li>Campanhas por etapa do funil e remarketing simples</li>
+            </ul>
+          </div>
+
+          <div class="module">
+            <div class="module-top">
+              <div class="module-number">07</div>
+              <h3>Leitura de Métricas Sem Complicação</h3>
+            </div>
+            <p>Saiba o que olhar e como interpretar os primeiros resultados.</p>
+            <ul>
+              <li>CTR, CPC, CPM, leads, mensagens e conversão</li>
+              <li>Como identificar se o problema está no anúncio, público ou oferta</li>
+              <li>O que otimizar primeiro</li>
+            </ul>
+          </div>
+
+          <div class="module">
+            <div class="module-top">
+              <div class="module-number">08</div>
+              <h3>Primeiras Otimizações e Escala Inicial</h3>
+            </div>
+            <p>Entenda como melhorar sem destruir o que já está funcionando.</p>
+            <ul>
+              <li>Ajustes pequenos e inteligentes</li>
+              <li>Testes simples de criativo, copy, público e oferta</li>
+              <li>Como escalar do jeito certo no começo</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="entregaveis">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Entregáveis</span>
+          <h2 class="section-title">O que o aluno recebe ao entrar</h2>
+          <p>
+            Além do conteúdo principal, a proposta da página já destaca materiais complementares para acelerar a execução e facilitar a aplicação prática.
+          </p>
+        </div>
+
+        <div class="deliverables">
+          <div class="deliver-box">
+            <h3>Conteúdo principal</h3>
+            <ul>
+              <li>Curso completo com 8 módulos e 24 aulas</li>
+              <li>Estrutura passo a passo para iniciantes</li>
+              <li>Explicações claras sobre Meta Ads, oferta, público e criativo</li>
+              <li>Aplicações para negócios locais, serviços e geração de leads</li>
+              <li>Direção estratégica para começar com mais segurança</li>
+            </ul>
+          </div>
+
+          <div class="deliver-box">
+            <h3>Bônus e materiais de apoio</h3>
+            <ul>
+              <li>Checklist da primeira campanha</li>
+              <li>Modelo de copy para anúncio</li>
+              <li>Estrutura básica de campanha para WhatsApp</li>
+              <li>Modelo de oferta para negócios locais</li>
+              <li>Planilha simples para análise de métricas</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Diferencial</span>
+          <h2 class="section-title">Não é só um curso para apertar botão. É um curso para pensar campanha com cabeça de negócio.</h2>
+          <p>
+            O grande diferencial desta oferta é ensinar tráfego pago com visão estratégica, conectando anúncio, oferta, posicionamento, atendimento e conversão. Isso evita que o aluno aprenda apenas o lado operacional sem entender o que realmente gera resultado.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="icon">🚀</div>
+            <h3>Visão de mercado</h3>
+            <p>O aluno aprende a pensar campanha para negócios reais, e não apenas reproduzir configuração de plataforma.</p>
+            <ul>
+              <li>Foco em aplicação prática</li>
+              <li>Lógica comercial</li>
+              <li>Estratégia antes da ferramenta</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="icon">💬</div>
+            <h3>Conexão com vendas</h3>
+            <p>O conteúdo mostra que tráfego pago precisa conversar com criativo, WhatsApp, funil e atendimento.</p>
+            <ul>
+              <li>Mais clareza para gerar leads</li>
+              <li>Mais noção de conversão</li>
+              <li>Mais capacidade de corrigir gargalos</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="cta-block">
+          <span class="eyebrow" style="color:#fff; opacity:.85;">Oferta especial</span>
+          <h2>Comece agora a aprender tráfego pago com uma base sólida e aplicável.</h2>
+          <p>
+            Se você quer parar de anunciar no escuro e finalmente entender como criar campanhas com lógica, esta é a oportunidade de entrar no curso e acelerar sua curva de aprendizado.
+          </p>
+          <div class="price-box">
+            <span class="old-price">de R$ 197,00</span>
+            <span class="new-price"><small>por</small> R$ 97,00</span>
+          </div>
+          <div>
+            <a class="btn btn-primary" href="https://pay.kiwify.com.br/Mla85cx" target="_blank" rel="noopener noreferrer">Quero garantir meu acesso</a>
+          </div>
+          <span class="secure-note">Pagamento via checkout seguro na Kiwify.</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Perguntas frequentes</span>
+          <h2 class="section-title">Dúvidas comuns antes de comprar</h2>
+        </div>
+
+        <div class="faq">
+          <details>
+            <summary>Este curso é realmente para iniciantes?</summary>
+            <p>Sim. Ele foi estruturado para quem está começando e precisa entender os fundamentos do tráfego pago com uma linguagem clara e aplicação prática.</p>
+          </details>
+
+          <details>
+            <summary>O curso ensina só Meta Ads?</summary>
+            <p>A base principal da estrutura foi pensada para Meta Ads e campanhas práticas de geração de leads, WhatsApp e negócios locais. A lógica estratégica, porém, serve para outras plataformas também.</p>
+          </details>
+
+          <details>
+            <summary>Eu preciso já ter um negócio para aplicar?</summary>
+            <p>Não. Você pode aplicar em um negócio próprio, em clientes, em uma empresa da família ou usar o curso para começar a aprender profissionalmente.</p>
+          </details>
+
+          <details>
+            <summary>Vou aprender apenas a parte técnica?</summary>
+            <p>Não. O curso foi pensado para unir técnica e estratégia, mostrando como oferta, público, criativo, atendimento e funil influenciam o resultado.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>Ailton Lopes</strong> • Curso Tráfego Pago para Iniciantes</p>
+      <p>Landing page em HTML pronta para edição e publicação.</p>
+    </div>
+  </footer>
+
+  <div class="floating-cta">
+    <a class="btn btn-primary" href="https://pay.kiwify.com.br/Mla85cx" target="_blank" rel="noopener noreferrer">Garantir minha vaga agora</a>
+  </div>
+</body>
+</html>
